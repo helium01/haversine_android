@@ -1,28 +1,18 @@
 package com.opencv.bank_sampah
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.opencv.bank_sampah.activity.AwalActivity
-import com.opencv.bank_sampah.fragment.user.*
+import com.opencv.bank_sampah.fragment.admin_outlet.*
 import com.opencv.bank_sampah.helper.SharePref
 
-class MainActivity : AppCompatActivity() {
-
+class AdminOutliteActivity : AppCompatActivity() {
     private val FragmentHome : Fragment = homeFragment()
     private val FragmentAkun : Fragment = akunFragment()
-//    private val FragmentJemput : Fragment = jemputFragment()
-//    private val FragmentKategori : Fragment = kategoriFragment()
-//    private val FragmentKategoriSampah : Fragment = kategoriSampahFragment()
-//    private val FragmentPetaBankSampah : Fragment = petaBankSampahFragment()
-//    private val FragmentRiwayat : Fragment = riwayatTransaksiFragment()
-//    private val FragmentSedekah : Fragment = sedekahFragment()
     private val FragmentNotifikasi : Fragment = notifikasiFragment()
     private val fm : FragmentManager = supportFragmentManager
     private var active : Fragment = FragmentHome
@@ -32,28 +22,11 @@ class MainActivity : AppCompatActivity() {
 
     private var status=false
     private lateinit var s: SharePref
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_admin_outlite)
 
-        s =SharePref(this)
-        if(s.getStatusLogin()){
-            if(s.getString(s.role)=="User"){
-                setContentView(R.layout.activity_main)
-                Log.e("masuk sini",s.getString(s.role))
-                setButtonNav()
-            }else if(s.getString(s.role)=="Admin_outlite"){
-                setContentView(R.layout.activity_admin_outlite)
-                Log.e("disini",s.getString(s.role))
-            }else{
-                setContentView(R.layout.activity_main)
-                Log.e("masuksini",s.getString(s.role))
-                setButtonNav()
-            }
-        }else{
-            startActivity(Intent(this, AwalActivity::class.java) )
-        }
+        setButtonNav()
     }
 
     fun setButtonNav(){

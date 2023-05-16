@@ -16,13 +16,13 @@ import com.opencv.bank_sampah.model.response.userResponse
 import retrofit2.Call
 import retrofit2.Response
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterOutliteActivity : AppCompatActivity() {
     private lateinit var selectedRole: String
     private lateinit var s: SharePref
     override fun onCreate(savedInstanceState: Bundle?) {
         s = SharePref(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_register_outlite)
         val myButton = findViewById<Button>(R.id.btn_register)
         myButton.setOnClickListener {
             register()
@@ -76,8 +76,8 @@ class RegisterActivity : AppCompatActivity() {
                     val data = userResponse?.data
 //                    val token = userResponse?.access_token
                     s.setStatusLogin(true)
-                    Toast.makeText(this@RegisterActivity, "Selamat datang " + data?.name.toString(), Toast.LENGTH_SHORT).show()
-                    val intent= Intent(this@RegisterActivity, MainActivity::class.java)
+                    Toast.makeText(this@RegisterOutliteActivity, "Selamat datang " + data?.name.toString(), Toast.LENGTH_SHORT).show()
+                    val intent= Intent(this@RegisterOutliteActivity, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK )
                     startActivity(intent)
                     finish()
@@ -89,7 +89,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<userResponse>, t: Throwable) {
-                Log.e("error","error")
+                Log.e("error",t.message.toString())
             }
 
         })

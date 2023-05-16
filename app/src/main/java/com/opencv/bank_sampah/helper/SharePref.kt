@@ -3,6 +3,8 @@ package com.opencv.bank_sampah.helper
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.opencv.bank_sampah.model.data.User
 
 class SharePref(activity : Activity) {
     val mypref="basecamp"
@@ -12,6 +14,7 @@ class SharePref(activity : Activity) {
     val email="email"
     val role="role"
     val id=""
+    var user="user"
 
     init {
         sp=activity.getSharedPreferences(mypref, Context.MODE_PRIVATE)
@@ -24,6 +27,15 @@ class SharePref(activity : Activity) {
     }
     fun setString(key:String,value:String){
         sp.edit().putString(key,value).apply()
+    }
+    fun setUser(value: User){
+        val data:String= Gson().toJson(value, User::class.java)
+        sp.edit().putString(user,data).apply()
+    }
+    fun getUser(): User?{
+        var data:String=sp.getString(user,null)?:return null
+        val json= Gson().fromJson<User>(data, User::class.java)
+        return json
     }
     fun setId(data:Int){
         sp.edit().putInt(id,data).apply()
