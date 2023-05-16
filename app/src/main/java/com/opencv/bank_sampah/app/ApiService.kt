@@ -22,6 +22,13 @@ interface ApiService {
         @Body request: registerRequest
     ): Call<userResponse>
 
+    @Headers("Content-Type: application/json")
+    @GET("kupons")
+    fun kupon():call<>
+
+    @Headers("Content-Type: application/json")
+    @GET("kupons")
+    fun kupon():call<>
 
 
 
