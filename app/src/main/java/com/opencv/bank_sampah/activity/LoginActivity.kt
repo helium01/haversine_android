@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
         s = SharePref(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        login()
     }
     fun login(){
         val email = findViewById<EditText>(R.id.txt_email)

@@ -1,7 +1,9 @@
 package com.opencv.bank_sampah.app
 
+import com.opencv.bank_sampah.model.request.inputOutliteRequest
 import com.opencv.bank_sampah.model.request.registerRequest
 import com.opencv.bank_sampah.model.request.userRequest
+import com.opencv.bank_sampah.model.response.inputOutliteResponse
 import com.opencv.bank_sampah.model.response.userResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -23,12 +25,18 @@ interface ApiService {
     ): Call<userResponse>
 
     @Headers("Content-Type: application/json")
-    @GET("kupons")
-    fun kupon():call<>
+    @POST("outlets")
+    fun outlets(
+        @Body request: inputOutliteRequest
+    ): Call<inputOutliteResponse>
 
-    @Headers("Content-Type: application/json")
-    @GET("kupons")
-    fun kupon():call<>
+//    @Headers("Content-Type: application/json")
+//    @GET("kupons")
+//    fun kupon():call<>
+//
+//    @Headers("Content-Type: application/json")
+//    @GET("kupons")
+//    fun kupon():call<>
 
 
 

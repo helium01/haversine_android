@@ -12,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.opencv.bank_sampah.activity.AwalActivity
 import com.opencv.bank_sampah.fragment.user.*
 import com.opencv.bank_sampah.helper.SharePref
+import com.opencv.bank_sampah.activity.InpurOutliteActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,8 +45,10 @@ class MainActivity : AppCompatActivity() {
                 Log.e("masuk sini",s.getString(s.role))
                 setButtonNav()
             }else if(s.getString(s.role)=="Admin_outlite"){
-                setContentView(R.layout.activity_admin_outlite)
-                Log.e("disini",s.getString(s.role))
+                val intent= Intent(this@MainActivity, InpurOutliteActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK )
+                startActivity(intent)
+                finish()
             }else{
                 setContentView(R.layout.activity_main)
                 Log.e("masuksini",s.getString(s.role))
